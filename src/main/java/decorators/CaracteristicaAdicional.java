@@ -20,6 +20,6 @@ public class CaracteristicaAdicional extends ReservaDecorator {
 
     @Override
     public String toString() {
-        return super.toString() + ", Caracteristica Adicional: " + servicio.getNombre() + ", Precio total mas coste adicional: $" + getPrecioTotal() + " USD";
+        return super.toString() + ", Precio total mas coste adicional: $" + getPrecioTotal() + " USD";
     }
 }

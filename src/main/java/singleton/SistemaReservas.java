@@ -113,4 +113,8 @@ public class SistemaReservas {
     public void eliminarServicio(Servicio servicio) {
         servicios.remove(servicio);
     }
+
+    public void agregarCargoExtra(Reserva reserva, double monto) {
+        reserva.setPrecioTotal(reserva.getPrecioTotal() + monto);
+    }
 }

@@ -1,5 +1,7 @@
 package models;
 
+import lombok.Setter;
+
 import java.util.Date;
 
 public class Reserva {
@@ -8,6 +10,7 @@ public class Reserva {
     private Habitacion habitacion;
     private Date fechaInicio;
     private Date fechaFin;
+    @Setter
     private double precioTotal;
 
     public Reserva(String id, Cliente cliente, Habitacion habitacion, Date fechaInicio, Date fechaFin) {

@@ -6,6 +6,7 @@ import models.Servicio;
 import singleton.SistemaReservas;
 
 import java.sql.Date;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Main {
@@ -81,12 +82,14 @@ public class Main {
     }
 
     private static void eliminarServicio(Scanner scanner, SistemaReservas sistemaReservas) {
-        // Seleccione el servicio a eliminar por ID por medio de un menu
-        System.out.println("Seleccione un servicio: ");
-        sistemaReservas.obtenerServicios().forEach(System.out::println);
-        System.out.print("Ingrese el ID del servicio a eliminar: ");
-        String servicioId = scanner.nextLine();
-        Servicio servicio = sistemaReservas.buscarServicio(servicioId);
+
+        for (int i = 0; i < sistemaReservas.obtenerServicios().size(); i++) {
+            System.out.println((i + 1) + ". " + sistemaReservas.obtenerReservas().get(i));
+        }
+        System.out.print("Ingrese el número del servicio a eliminar: ");
+        int servicioIndex = scanner.nextInt();
+        scanner.nextLine();
+        Servicio servicio = sistemaReservas.buscarServicio(sistemaReservas.obtenerServicios().get(servicioIndex - 1).getId());
 
         if (servicio == null) {
             System.out.println("Servicio no encontrado. Asegúrese de que el ID sea correcto.");
@@ -113,12 +116,14 @@ public class Main {
     }
 
     private static void eliminarReserva(Scanner scanner, SistemaReservas sistemaReservas) {
-        // Seleccione la reserva a eliminar por ID por medio de un menu
-        System.out.println("Seleccione una reserva: ");
-        sistemaReservas.obtenerReservas().forEach(System.out::println);
-        System.out.print("Ingrese el ID de la reserva a eliminar: ");
-        String reservaId = scanner.nextLine();
-        Reserva reserva = sistemaReservas.buscarReserva(reservaId);
+
+        for (int i = 0; i < sistemaReservas.obtenerReservas().size(); i++) {
+            System.out.println((i + 1) + ". " + sistemaReservas.obtenerReservas().get(i));
+        }
+        System.out.print("Ingrese el número de la reserva a eliminar: ");
+        int reservaIndex = scanner.nextInt();
+        scanner.nextLine();
+        Reserva reserva = sistemaReservas.buscarReserva(sistemaReservas.obtenerReservas().get(reservaIndex - 1).getId());
 
         if (reserva == null) {
             System.out.println("Reserva no encontrada. Asegúrese de que el ID sea correcto.");
@@ -130,11 +135,13 @@ public class Main {
 
     private static void eliminarHabitacion(Scanner scanner, SistemaReservas sistemaReservas) {
         // Seleccione la habitación a eliminar por ID por medio de un menu
-        System.out.println("Seleccione una habitación: ");
-        sistemaReservas.obtenerHabitaciones().forEach(System.out::println);
-        System.out.print("Ingrese el ID de la habitación a eliminar: ");
-        String habitacionId = scanner.nextLine();
-        Habitacion habitacion = sistemaReservas.buscarHabitacion(habitacionId);
+        for (int i = 0; i < sistemaReservas.obtenerHabitaciones().size(); i++) {
+            System.out.println((i + 1) + ". " + sistemaReservas.obtenerHabitaciones().get(i));
+        }
+        System.out.print("Ingrese el número de la habitación a eliminar: ");
+        int habitacionIndex = scanner.nextInt();
+        scanner.nextLine();
+        Habitacion habitacion = sistemaReservas.buscarHabitacion(sistemaReservas.obtenerHabitaciones().get(habitacionIndex - 1).getId());
 
         if (habitacion == null) {
             System.out.println("Habitación no encontrada. Asegúrese de que el ID sea correcto.");
@@ -145,12 +152,13 @@ public class Main {
     }
 
     private static void eliminarCliente(Scanner scanner, SistemaReservas sistemaReservas) {
-        // Seleccione el cliente a eliminar por ID por medio de un menu
-        System.out.println("Seleccione un cliente: ");
-        sistemaReservas.obtenerClientes().forEach(System.out::println);
-        System.out.print("Ingrese el ID del cliente a eliminar: ");
-        String clienteId = scanner.nextLine();
-        Cliente cliente = sistemaReservas.buscarCliente(clienteId);
+        for (int i = 0; i < sistemaReservas.obtenerClientes().size(); i++) {
+            System.out.println((i + 1) + ". " + sistemaReservas.obtenerClientes().get(i));
+        }
+        System.out.print("Ingrese el número del cliente a eliminar: ");
+        int clienteIndex = scanner.nextInt();
+        scanner.nextLine();
+        Cliente cliente = sistemaReservas.buscarCliente(sistemaReservas.obtenerClientes().get(clienteIndex - 1).getId());
         if (cliente == null) {
             System.out.println("Cliente no encontrado. Asegúrese de que el ID sea correcto.");
         } else {
@@ -205,24 +213,27 @@ public class Main {
     }
 
     private static void realizarReserva(Scanner scanner, SistemaReservas sistemaReservas) {
-        // Seleccion del cliente por ID por medio de un menu
-        System.out.println("Seleccione un cliente: ");
-        sistemaReservas.obtenerClientes().forEach(System.out::println);
-        System.out.print("Ingrese el ID del cliente: ");
-        String clienteId = scanner.nextLine();
-        Cliente cliente = sistemaReservas.buscarCliente(clienteId);
+
+        for (int i = 0; i < sistemaReservas.obtenerClientes().size(); i++) {
+            System.out.println((i + 1) + ". " + sistemaReservas.obtenerClientes().get(i));
+        }
+        System.out.print("Ingrese el número del cliente: ");
+        int clienteIndex = scanner.nextInt();
+        scanner.nextLine();
+        Cliente cliente = sistemaReservas.obtenerClientes().get(clienteIndex - 1);
 
         if (cliente == null) {
             System.out.println("Cliente no encontrado. Asegúrese de que el ID sea correcto.");
             return;
         }
 
-        // Solicitar la habitación a reservar por un menu
-        System.out.println("Seleccione una habitación: ");
-        sistemaReservas.obtenerHabitaciones().forEach(System.out::println);
-        System.out.print("ingrese el ID de la habitacion a reservar: ");
-        String habitacionId = scanner.nextLine();
-        Habitacion habitacion = sistemaReservas.buscarHabitacion(habitacionId);
+        for (int i = 0; i < sistemaReservas.obtenerHabitaciones().size(); i++) {
+            System.out.println((i + 1) + ". " + sistemaReservas.obtenerHabitaciones().get(i));
+        }
+        System.out.print("Ingrese el número de la habitación: ");
+        int habitacionIndex = scanner.nextInt();
+        scanner.nextLine();
+        Habitacion habitacion = sistemaReservas.obtenerHabitaciones().get(habitacionIndex - 1);
 
         if (habitacion == null) {
             System.out.println("Habitación no encontrada. Asegúrese de que el ID sea correcto.");
@@ -235,14 +246,31 @@ public class Main {
             return;
         }
 
-        // Solicitar las fechas de inicio y fin de la reserva
-        System.out.print("Ingrese la fecha de inicio de la reserva (YYYY-MM-DD): ");
-        String fechaInicio = scanner.nextLine();
-        // Convertir la fecha de inicio a un objeto Date
+        System.out.print("Ingrese el dia del Check In: ");
+        int diaInicio = scanner.nextInt();
+        scanner.nextLine();
+        System.out.print("Ingrese el mes del Check In: ");
+        int mesInicio = scanner.nextInt();
+        scanner.nextLine();
+        System.out.print("Ingrese el año del Check In: ");
+        int anioInicio = scanner.nextInt();
+        scanner.nextLine();
+        // formar String en formato YYYY-MM-DD
+
+        String fechaInicio = String.format("%04d-%02d-%02d", anioInicio, mesInicio, diaInicio);
         Date fechaInicioDate = Date.valueOf(fechaInicio);
-        System.out.print("Ingrese la fecha de fin de la reserva (YYYY-MM-DD): ");
-        String fechaFin = scanner.nextLine();
-        // Convertir la fecha de fin a un objeto Date
+
+        System.out.print("Ingrese el dia del Check Out: ");
+        int diaFin = scanner.nextInt();
+        scanner.nextLine();
+        System.out.print("Ingrese el mes del Check Out: ");
+        int mesFin = scanner.nextInt();
+        scanner.nextLine();
+        System.out.print("Ingrese el año del Check Out: ");
+        int anioFin = scanner.nextInt();
+        scanner.nextLine();
+        // formar String en formato YYYY-MM-DD
+        String fechaFin = String.format("%04d-%02d-%02d", anioFin, mesFin, diaFin);
         Date fechaFinDate = Date.valueOf(fechaFin);
 
         Reserva reserva = new Reserva(generarId(), cliente, habitacion, fechaInicioDate, fechaFinDate);
@@ -250,29 +278,73 @@ public class Main {
         // agregar servicio adicional
         System.out.print("Desea agregar un servicio adicional? (S/N): ");
         String respuesta = scanner.nextLine();
-        double precioAdicional = 0;
-        if (respuesta.equalsIgnoreCase("S")) {
-            // Mostrar los servicios adicionales disponibles por medio de un menu
-            System.out.println("Seleccione un servicio adicional: ");
-            sistemaReservas.obtenerServicios().forEach(System.out::println);
-            System.out.print("Ingrese el ID del servicio adicional: ");
-            String servicioId = scanner.nextLine();
-            Servicio servicio = sistemaReservas.buscarServicio(servicioId);
-            if (servicio == null) {
-                System.out.println("Servicio no encontrado. Asegúrese de que el ID sea correcto.");
-                return;
+        while (!Objects.equals(respuesta, "S") && !Objects.equals(respuesta, "N")) {
+            System.out.print("Respuesta inválida. Intente nuevamente. Desea agregar un servicio adicional? (S/N): ");
+            respuesta = scanner.nextLine();
+        }
+        int agregarMas = 1;
+        while (Objects.equals(respuesta, "S") && agregarMas == 1) {
+            double precioAdicional;
+            if (respuesta.equalsIgnoreCase("S")) {
+                // Mostrar los servicios adicionales disponibles por medio de un menu
+                System.out.println("Seleccione un servicio adicional: ");
+                for (int i = 0; i < sistemaReservas.obtenerServicios().size(); i++) {
+                    System.out.println((i + 1) + ". " + sistemaReservas.obtenerServicios().get(i));
+                }
+                System.out.print("Ingrese el numero del servicio: ");
+                int servicioIndex = scanner.nextInt();
+                scanner.nextLine();
+                Servicio servicio = sistemaReservas.obtenerServicios().get(servicioIndex - 1);
+
+                if (servicio == null) {
+                    System.out.println("Servicio no encontrado. Asegúrese de que el ID sea correcto.");
+                    return;
+                }
+
+                System.out.print("Ingrese la cantidad: ");
+                int cantidad = scanner.nextInt();
+                scanner.nextLine();
+                // Agregar el precio del servicio al precio total de la reserva
+                precioAdicional = servicio.getPrecio() * cantidad;
+                CaracteristicaAdicional caracteristicaAdicional = new CaracteristicaAdicional(reserva ,servicio, precioAdicional);
+                sistemaReservas.agregarReserva(caracteristicaAdicional);
+                System.out.println("Reserva con servicio adicional agregado exitosamente.");
+            } else {
+                sistemaReservas.agregarReserva(reserva);
+                System.out.println("Reserva realizada exitosamente.");
             }
-            System.out.print("Ingrese la cantidad: ");
-            int cantidad = scanner.nextInt();
-            scanner.nextLine();
-            // Agregar el precio del servicio al precio total de la reserva
-            precioAdicional = servicio.getPrecio() * cantidad;
-            CaracteristicaAdicional caracteristicaAdicional = new CaracteristicaAdicional(reserva ,servicio, precioAdicional);
-            sistemaReservas.agregarReserva(caracteristicaAdicional);
-            System.out.println("Reserva con servicio adicional agregado exitosamente.");
-        } else {
-            sistemaReservas.agregarReserva(reserva);
-            System.out.println("Reserva realizada exitosamente.");
+
+            System.out.print("Desea agregar otro servicio adicional? (S/N): ");
+            respuesta = scanner.nextLine();
+            while (!Objects.equals(respuesta, "S") && !Objects.equals(respuesta, "N")) {
+                System.out.print("Respuesta inválida. Intente nuevamente. Desea agregar un servicio adicional? (S/N): ");
+                respuesta = scanner.nextLine();
+            }
+            while (respuesta.equals("S")) {
+                for (int i = 1; i < sistemaReservas.obtenerServicios().size(); i++) {
+                    System.out.println((i + 1) + ". " + sistemaReservas.obtenerServicios().get(i));
+                }
+                System.out.print("Seleccione un servicio adicional: ");
+                int servicioIndex = scanner.nextInt();
+                scanner.nextLine();
+                Servicio servicio = sistemaReservas.obtenerServicios().get(servicioIndex - 1);
+                double precioAdicionalExtra = servicio.getPrecio();
+                System.out.print("Ingrese la cantidad: ");
+                int cantidad = scanner.nextInt();
+                scanner.nextLine();
+                precioAdicionalExtra = precioAdicionalExtra * cantidad;
+                sistemaReservas.agregarCargoExtra(reserva, precioAdicionalExtra);
+
+                System.out.print("Desea agregar otro servicio adicional? (S/N): ");
+                respuesta = scanner.nextLine();
+                while (!Objects.equals(respuesta, "S") && !Objects.equals(respuesta, "N")) {
+                    System.out.print("Respuesta inválida. Intente nuevamente. Desea agregar un servicio adicional? (S/N): ");
+                    respuesta = scanner.nextLine();
+                }
+            }
+            if (respuesta.equalsIgnoreCase("N")) {
+                agregarMas = 0;
+            }
         }
     }
 

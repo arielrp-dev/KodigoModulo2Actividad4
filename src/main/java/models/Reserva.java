@@ -1,11 +1,15 @@
 package models;
 
+import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
 
+@Getter
 public class Reserva {
+    @Setter
     private String id;
+    @Setter
     private Cliente cliente;
     private Habitacion habitacion;
     private Date fechaInicio;
@@ -34,33 +38,9 @@ public class Reserva {
         habitacion.setDisponible(false);
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
-    }
-
-    public Habitacion getHabitacion() {
-        return habitacion;
-    }
-
     public void setHabitacion(Habitacion habitacion) {
         this.habitacion = habitacion;
         calcularPrecioTotal(); // Recalcular el precio total si se cambia la habitación
-    }
-
-    public Date getFechaInicio() {
-        return fechaInicio;
     }
 
     public void setFechaInicio(Date fechaInicio) {
@@ -68,17 +48,9 @@ public class Reserva {
         calcularPrecioTotal(); // Recalcular el precio total si se cambia la fecha
     }
 
-    public Date getFechaFin() {
-        return fechaFin;
-    }
-
     public void setFechaFin(Date fechaFin) {
         this.fechaFin = fechaFin;
         calcularPrecioTotal(); // Recalcular el precio total si se cambia la fecha
-    }
-
-    public double getPrecioTotal() {
-        return precioTotal;
     }
 
     @Override

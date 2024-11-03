@@ -66,14 +66,6 @@ mvn exec:java -Dexec.mainClass="Main"
 
 Se realizarán pruebas del flujo de cada funcionalidad del proyecto mediante la interfaz de usuario de la consola, asegurando que todas las características funcionen como se espera.
 
-## Contribuciones
-
-Las contribuciones son bienvenidas. Si deseas mejorar o añadir nuevas características, por favor abre un *pull request*.
-
-## Licencia
-
-Este proyecto está bajo la Licencia MIT. Consulta el archivo `LICENSE` para más detalles.
-
 ## Referencias
 
 - [Documentación de Java](https://docs.oracle.com/en/java/)
